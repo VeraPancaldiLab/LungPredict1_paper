@@ -1,0 +1,24 @@
+[2024-08-16 15:44:11] [INFO]    [OmnipathR] Welcome to OmnipathR!
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/OmnipathR/cache.json` (encoding: UTF-8).
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:11] [INFO]    [OmnipathR] Initialized cache: `/home/marcelo.hurtado/.cache/OmnipathR`.
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/db/db_def.json` (encoding: UTF-8).
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/internal/magic_bytes.json` (encoding: UTF-8).
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/internal/urls.json` (encoding: UTF-8).
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/internal/id_types.json` (encoding: UTF-8).
+[2024-08-16 15:44:11] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:56] [INFO]    [OmnipathR] Welcome to OmnipathR!
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/OmnipathR/cache.json` (encoding: UTF-8).
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:56] [INFO]    [OmnipathR] Initialized cache: `/home/marcelo.hurtado/.cache/OmnipathR`.
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/db/db_def.json` (encoding: UTF-8).
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/internal/magic_bytes.json` (encoding: UTF-8).
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/internal/urls.json` (encoding: UTF-8).
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] Reading JSON from `/home/marcelo.hurtado/.cache/R/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/OmnipathR/3.10.1/41cbd1b2c8114dc4676d82f7804551e3/OmnipathR/internal/id_types.json` (encoding: UTF-8).
+[2024-08-16 15:44:56] [TRACE]   [OmnipathR] JSON validation successful: TRUE
