@@ -1,0 +1,76 @@
+---
+title: "TCGA_analysis"
+output: html_document
+date: "2024-08-04"
+---
+
+```{r}
+library(TCGAbiolinks)
+library(tidyverse)
+library(maftools)
+library(pheatmap)
+library(SummarizedExperiment)
+```
+
+Get list of projects
+```{r}
+gdcprojects = getGDCprojects()
+getProjectSummary('TCGA-LUAD')
+```
+
+Building a query
+```{r}
+query_TCGA = GDCquery(project = 'TCGA-LUAD',
+                      data.category = "Transcriptome Profiling")
+output_query_TCGA = getResults(query_TCGA) 
+
+open_cases_TCGA = output_query_TCGA %>%
+  filter(data_category == "Transcriptome Profiling",
+         experimental_strategy == "RNA-Seq",
+         analysis_workflow_type == "STAR - Counts",
+         access == "open") %>%
+  pull(cases)
+```
+
+Add filters to only retrieve gene expression data
+```{r}
+query_TCGA = GDCquery(project = 'TCGA-LUAD',
+                      data.category = "Transcriptome Profiling",
+                      experimental.strategy = "RNA-Seq",
+                      workflow.type = "STAR - Counts",
+                      access = "open",
+                      data.format = "tsv",
+                      barcode = open_cases_TCGA)
+
+getResults(query_TCGA) #600 cases
+#GDCdownload(query_TCGA)
+```
+Prepare data
+```{r}
+tcga_luad_data = GDCprepare(query_TCGA, summarizedExperiment = T)
+```
+
+Retrieve survival data
+```{r}
+clinical = GDCquery_clinic("TCGA-LUAD") 
+which(colnames(clinical)%in%c("vital_status", "days_to_last_follow_up", "days_to_death"))
+clinical = clinical[,c(2,9,40,46)]
+table(clinical$vital_status)
+```
+
+Add information status
+```{r}
+clinical$deceased = ifelse(clinical$vital_status == "Alive", F, T)
+clinical$overall_survival = ifelse(clinical$vital_status == "Alive",
+                                   clinical$days_to_last_follow_up,
+                                   clinical$days_to_death)
+```
+
+Filter for early stage samples
+```{r}
+clinical = clinical[clinical$submitter_id%in%traitData$Sample,]
+clinical = clinical[match(traitData$Sample, clinical$submitter_id),] #Order samples 
+traitData = cbind(traitData, clinical) 
+traitData$submitter_id = NULL
+```
+
