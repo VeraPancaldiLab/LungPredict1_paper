@@ -1,5 +1,6 @@
 Input/*
 Output/*
-
+scripts/omnipathr-log/*
+scripts/renv/*
 .Rproj.user
 .Rhistory
