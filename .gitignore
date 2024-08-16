@@ -1,2 +1,7 @@
 Input/*
 Output/*
+
+scripts/omnipathr-log/*
+scripts/renv/*
+scripts/.Rproj.user
+scripts/.Rhistory

@@ -1,0 +1,24 @@
+{
+    "id": "740847A1",
+    "path": "~/Documents/LungPredict1_paper/Scripts/Data_preprocessing.Rmd",
+    "project_path": "Data_preprocessing.Rmd",
+    "type": "r_markdown",
+    "hash": "2451346371",
+    "contents": "",
+    "dirty": false,
+    "created": 1723815889811.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1723642378,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1723642378,
+    "read_only": false,
+    "read_only_alternatives": []
+}

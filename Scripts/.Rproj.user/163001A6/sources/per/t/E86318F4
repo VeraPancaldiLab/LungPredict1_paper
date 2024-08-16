@@ -1,0 +1,24 @@
+{
+    "id": "E86318F4",
+    "path": "~/Documents/LungPredict1_paper/Scripts/TCGA_analysis.Rmd",
+    "project_path": "TCGA_analysis.Rmd",
+    "type": "r_markdown",
+    "hash": "620846476",
+    "contents": "",
+    "dirty": false,
+    "created": 1723815909332.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1723772450,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1723772450,
+    "read_only": false,
+    "read_only_alternatives": []
+}

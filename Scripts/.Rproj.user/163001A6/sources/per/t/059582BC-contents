@@ -1,0 +1,57 @@
+---
+title: "Survival_analysis"
+author: "Marcelo Hurtado"
+date: "2024-02-21"
+output: html_document
+---
+
+Load results from Vanderbilt
+```{r}
+load("~/Documents/CellTFusion/user_projects/results_Vanderbilt.RData")
+```
+
+Set up environment
+```{r setup, include=FALSE}
+set.seed(123)
+source("src/environment_set.R")
+```
+
+Load survival data
+```{r}
+survival = read.csv("Survival_data_Vanderbilt.csv", row.names = 1)
+patients = read.csv("ClinicalData_Vanderbilt.csv", row.names = 1)
+```
+
+Add survival data to trait data
+```{r}
+survival = survival[rownames(survival)%in%patients$pt_ID,] #Keep only patients with clinical data and survival information
+survival = survival[match(patients$pt_ID, rownames(survival)),] #Keep same order between patients and survival info
+
+survival = survival %>%
+  rownames_to_column(var = "Samples") %>%
+  mutate(Samples = rownames(patients)) %>%
+  column_to_rownames("Samples") %>%
+  mutate(DRP_st = if_else(DRP_st == "Yes", 1, 0))
+
+traitData = patients %>%
+  mutate(DRP_st = survival$DRP_st) %>%
+  mutate(PFS = survival$PFS)
+```
+
+Early Stage only (I, II) ~ 70 samples
+```{r}
+traitData = traitData %>%
+  filter(Stages_simplified %in% c("Stage_I", "Stage_II")) %>%
+  dplyr::select(-pt_ID, -Prior_Cancer_Type) %>%
+  mutate(Stages_simplified = case_when(
+    Stages_simplified == "Stage_I" ~ "I",
+    Stages_simplified == "Stage_II" ~ "II",
+    TRUE ~ Stages_simplified  # Keeps the original value if none of the conditions are met
+  ))
+```
+
+Survival analysis
+```{r}
+survival_groups = compute.survival.analysis(features = vanderbilt_groups, traitData, time_unit = "days", p.value = 0.01, max_factors = 3)
+```
+
