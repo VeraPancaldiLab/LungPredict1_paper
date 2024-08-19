@@ -16,14 +16,6 @@ library(ggplot2)
 set.seed(123)
 ```
 
-```{r}
-remotes::install_version("SeuratObject", "4.1.4", repos = c("https://satijalab.r-universe.dev", getOption("repos")))
-remotes::install_version("Seurat", "4.4.0", repos = c("https://satijalab.r-universe.dev", getOption("repos")))
-```
-
-To install SeuratDisk, first
-- sudo apt-get install libhdf5-dev
-
 Load seurat object 
 ```{r}
 #Convert("all_samples.h5ad", dest = "h5seurat", overwrite = T)
@@ -147,6 +139,7 @@ pdf("Results/Heatmap_BPE", width = 8, height = 5)
 pheatmap::pheatmap(log10(tab+10), color=colorRampPalette(c('white', 'blue'))(10))
 dev.off()
 ```
+
 NK cluster annotation (8)
 ```{r}
 NK8 = subset(seurat_anndata, idents = "8", invert = FALSE)
@@ -282,7 +275,7 @@ DimPlot(seurat_anndata, reduction="umap", label = T, pt.size = 1)
 
 Import bulk data
 ```{r}
-load("~/Documents/CellTFusion/user_projects/LP_early_results.RData")
+load("~/Downloads/LP_early_analysis_results.RData")
 bulk_gene_expression = counts
 ```
 
@@ -293,13 +286,16 @@ library(BayesPrism)
 counts.matrix <- as.matrix(seurat_anndata@assays$RNA@counts)
 cell.type.annotations <- Idents(seurat_anndata)
 
-deconvolution.results.bayesprism <- deconvolute(bulk_gene_expression = bulk_gene_expression,
+deconvolution.results.bayesprism <- omnideconv::deconvolute(bulk_gene_expression = bulk_gene_expression,
                                            single_cell_object = counts.matrix,
                                            cell_type_annotations = cell.type.annotations,
-                                           signature=NULL,
                                            method = 'bayesprism', 
                                            n_cores=12)
 
-omnideconv::plot_deconvolution(list('bayesprism' = deconvolution.results.bayesprism), "bar", "method", "Spectral")
+rownames(deconvolution.results.bayesprism) = colnames(bulk_gene_expression)
+
+omnideconv::plot_deconvolution(list('bayesprism' = deconvolution.results.bayesprism), "bar", "method", "Set1")
+
+omnideconv::plot_deconvolution(list('bayesprism' = deconvolution.results.bayesprism[,c("Dysfunctional", "Peripheral", "Tissue-resident")]), "bar", "method", "Set1")
 ```
 
