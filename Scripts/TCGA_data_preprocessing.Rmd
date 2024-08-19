@@ -45,9 +45,62 @@ query_TCGA = GDCquery(project = 'TCGA-LUAD',
 getResults(query_TCGA) #600 cases
 #GDCdownload(query_TCGA)
 ```
+
 Prepare data
 ```{r}
 tcga_luad_data = GDCprepare(query_TCGA, summarizedExperiment = T)
+```
+
+Extract counts
+```{r}
+counts.norm = assay(tcga_luad_data, "unstranded")  
+```
+
+Cleaning of clinical data
+```{r}
+traitData = read.csv('clinical.cart.2024-08-05/clinical.tsv', sep = '\t')
+sample_sheet = read.csv('clinical.cart.2024-08-05/gdc_sample_sheet.2024-08-05(1).tsv', sep = '\t')
+
+metadata = data.frame("Case" = colnames(counts.norm))
+
+for (i in 1:ncol(counts.norm)) {
+  parts <- strsplit(colnames(counts.norm), "-")[[i]]
+  sample_name <- parts[1:3]
+  sample_name = paste(sample_name, collapse = "-")
+  metadata$Sample[i] = sample_name
+}
+
+remove = which(duplicated(metadata$Sample))
+counts.norm = counts.norm[,-remove]
+
+metadata = metadata %>%
+  distinct(Sample, .keep_all = T)
+
+for (j in 1:nrow(metadata)) {
+  idx = which(metadata$Sample[j] == traitData$case_submitter_id)
+  if(length(idx)>0){
+    if(length(idx)>1){
+      idx = idx[1]
+    }
+    metadata$Stage[j] = traitData$ajcc_pathologic_stage[idx]  
+  }
+}
+
+extract_stage <- function(stage) {
+  sub("([IVXLC]+)[A-Z]*$", "\\1", stage)
+}
+
+metadata <- metadata %>%
+  mutate(Stages_simplified = sapply(metadata$Stage, extract_stage)) 
+```
+
+Early Stage
+```{r}
+traitData = metadata %>%
+  filter(Stages_simplified %in% c("Stage I", "Stage II")) %>%
+  column_to_rownames("Case")
+
+counts.norm = counts.norm[,rownames(traitData)]
 ```
 
 Retrieve survival data
