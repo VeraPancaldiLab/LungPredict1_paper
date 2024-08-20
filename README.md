@@ -14,7 +14,7 @@ Here, we applied a computational immunology approach involving differential expr
 
 ## Project organization
 - **Scripts**: Codes used for analysis.
-  -  `Data_preprocessing.Rmd`:
+  -  `Data_preprocessing.Rmd`: PCA and batch analysis of LungPredict and Vanderbilt cohorts.
   -  `LP_all_analysis.Rmd`: Analysis for LungPredict all stages samples. 
   -  `LP_early_analysis.Rmd`: Analysis for LungPredict early stages samples.
   -  `Vanderbilt_analysis.Rmd`: Analysis for Vanderbilt early stages samples.
