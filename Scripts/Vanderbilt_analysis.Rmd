@@ -108,6 +108,7 @@ PCA analysis
 traitData_Van$Batch = as.factor(traitData_Van$Batch)
 compute_pca_analysis(counts.norm.Van, traitData_Van, 'Batch')
 ```
+
 Perform analysis independently for each batch
 ```{r}
 samples_1 = traitData_Van %>%
@@ -219,7 +220,7 @@ dend_column = as.dendrogram(hc_van)
 
 ha = heatmap_annotation(annotations)
 
-ht1 = Heatmap(t(scale(vanderbilt_groups)), 
+ht1 = Heatmap(t(scale(vanderbilt_groups)), column_split = 2,
         border = T, cluster_columns = dend_column, cluster_rows = dend_row,
         top_annotation = ha, column_gap = unit(8, "mm"), 
         name = "Cell groups", clustering_method_rows = "ward.D2", clustering_method_columns = "complete",
@@ -229,7 +230,7 @@ ht1 = Heatmap(t(scale(vanderbilt_groups)),
         show_heatmap_legend = T, 
         row_names_gp = gpar(fontsize = 16), 
         column_names_gp = gpar(fontsize =12), 
-        width = unit(30, "cm"), height = unit(10, "cm"),
+        width = unit(25, "cm"), height = unit(10, "cm"),
         heatmap_legend_param = list(labels_gp = gpar(fontsize = 12), legend_width = unit(12, "cm"), 
                                     legend_heigh = unit(12, "cm"), title_gp = gpar(fontsize = 12)))
 
