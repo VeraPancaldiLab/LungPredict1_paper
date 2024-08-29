@@ -241,7 +241,7 @@ hc2 = hclust(dist(t(boruta_groups)), method = "ward.D2")
 dend_row = as.dendrogram(hc2)
 
 ht1 = Heatmap(t(scale(boruta_groups)), 
-        border = T, cluster_rows = dend_row, cluster_columns = dend_column, 
+        border = T, cluster_rows = dend_row, cluster_columns = dend_column, column_split = 2,
         top_annotation = heatmap_annotation(annotations), column_gap = unit(8, "mm"), 
         name = "Cell groups", clustering_method_rows = "ward.D2", clustering_method_columns = "ward.D2",
         column_dend_height = unit(5, "cm"), row_dend_width = unit(5, "cm"), 
@@ -250,11 +250,11 @@ ht1 = Heatmap(t(scale(boruta_groups)),
         show_heatmap_legend = T, 
         row_names_gp = gpar(fontsize = 16), 
         column_names_gp = gpar(fontsize =12), 
-        width = unit(25, "cm"), height = unit(15, "cm"),
+        width = unit(25, "cm"), height = unit(10, "cm"),
         heatmap_legend_param = list(labels_gp = gpar(fontsize = 12), legend_width = unit(12, "cm"), 
                                     legend_heigh = unit(12, "cm"), title_gp = gpar(fontsize = 12)))
 
-pdf("Results/Heatmap_cells_groups_boruta", width = 25, height = 12)
+pdf("Results/Heatmap_cells_groups_boruta", width = 25, height = 10)
 draw(ht1, show_heatmap_legend = T, heatmap_legend_side = "left", annotation_legend_side = 'left')
 dev.off()
 ```
