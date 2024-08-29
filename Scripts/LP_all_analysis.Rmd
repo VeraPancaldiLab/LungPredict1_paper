@@ -231,8 +231,8 @@ deconvolution_selected = feature.selection.boruta(data, iterations = 100, file_n
 
 Heatmap annotations
 ```{r}
-col_TFs = colorRamp2(c(-3, 0, 3), c("green", "white", "red"))
-col_pathways = colorRamp2(c(-4, 0, 4), c("blue", "white", "yellow"))
+col_TFs = circlize::colorRamp2(c(-3, 0, 3), c("green", "white", "red"))
+col_pathways =  circlize::colorRamp2(c(-4, 0, 4), c("blue", "white", "yellow"))
 
 annotations = cbind(traitData, gold.standards, scale(network[[1]]), scale(pathways))
 
@@ -321,11 +321,11 @@ Heatmap of selected deconvolution features
 boruta_groups = dt[[1]][,colnames(dt[[1]])%in%deconvolution_selected$Confirmed]
 
 ht1 = Heatmap(t(scale(boruta_groups)), cluster_columns = dend_column,
-        border = T, row_gap = unit(5, "mm"),  column_split = 3,
+        border = T, row_gap = unit(5, "mm"),  column_split = 3, row_split = 3,
         column_gap = unit(8, "mm"), top_annotation = heatmap_annotation(annotations),
         name = "Deconvolution", clustering_method_rows = "ward.D2", clustering_method_columns = "ward.D2",
         column_dend_height = unit(5, "cm"), row_dend_width = unit(5, "cm"), 
-        column_dend_reorder = T, row_dend_reorder = F,
+        column_dend_reorder = T, row_dend_reorder = F, show_row_dend = F, 
         show_row_names = T, 
         show_heatmap_legend = T, 
         row_names_gp = gpar(fontsize = 16), 
