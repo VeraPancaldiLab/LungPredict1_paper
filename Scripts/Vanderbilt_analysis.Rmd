@@ -345,4 +345,3 @@ names(foldchange) = entrz$ENTREZID
 data(bods, package = "pathview")
 NK_cyto = pathview::pathview(gene.data = foldchange, pathway.id = 'hsa04650', species = "hsa", kegg.native = TRUE, out.suffix = "NK_cyto")
 ```
-

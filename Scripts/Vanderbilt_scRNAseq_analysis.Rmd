@@ -202,6 +202,42 @@ VlnPlot(NK8, features = rownames(head(NK8.markers12, 3)))
 dev.off()
 ```
 
+Enrichment analysis
+```{r}
+######################## NK8.markers01
+entrz <- AnnotationDbi::select(org.Hs.eg.db, keys = rownames(NK8.markers01), columns = "ENTREZID", keytype = "SYMBOL") #Change to EntrezID
+
+kk <- enrichKEGG(gene         = entrz$ENTREZID,
+                 organism     = 'hsa',
+                 pvalueCutoff = 0.05)
+
+pdf("Results/Enrichment_result_NK8_markers01", width = 8, height = 8)
+dotplot(kk, showCategory=35) + ggtitle("ORA - KEGG pathways")
+dev.off()
+
+######################## NK8.markers02
+entrz <- AnnotationDbi::select(org.Hs.eg.db, keys = rownames(NK8.markers02), columns = "ENTREZID", keytype = "SYMBOL") #Change to EntrezID
+
+kk <- enrichKEGG(gene         = entrz$ENTREZID,
+                 organism     = 'hsa',
+                 pvalueCutoff = 0.05)
+
+pdf("Results/Enrichment_result_NK8_markers02", width = 8, height = 12)
+dotplot(kk, showCategory=35) + ggtitle("ORA - KEGG pathways")
+dev.off()
+
+######################## NK8.markers12
+entrz <- AnnotationDbi::select(org.Hs.eg.db, keys = rownames(NK8.markers12), columns = "ENTREZID", keytype = "SYMBOL") #Change to EntrezID
+
+kk <- enrichKEGG(gene         = entrz$ENTREZID,
+                 organism     = 'hsa',
+                 pvalueCutoff = 0.05)
+
+pdf("Results/Enrichment_result_NK8_markers12", width = 8, height = 8)
+dotplot(kk, showCategory=35) + ggtitle("ORA - KEGG pathways")
+dev.off()
+```
+
 Features NK
 ```{r}
 featuresNK = c("GNLY", "KLRK1", "KLRC2", "KLRC3", "CD3E", "NCAM1", "FCGR3A", "CD226", "GZMA", "GZMB", "GZMH", "GZMK", "PRF1", "TNF", "IFNG", "IL7R",
