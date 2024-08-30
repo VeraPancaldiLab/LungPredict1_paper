@@ -100,7 +100,7 @@ CellTFusion
 network = compute.WTCNA(tfs, corr_mod = 0.9, clustering.method = "ward.D2", minMod = 50) 
 compute.metada.association(network[[1]], traitData, pval = 0.05, width = 10) 
 pathways = compute.pathway.activity(counts.norm)
-compute.modules.relationship(network[[1]], pathways, "Pathways_Progeny-TFs_Modules", width = 10)
+compute.modules.relationship(network[[1]], pathways, "Pathways_Progeny-TFs_Modules", vertical = T, width = 9, height = 5)
 dt = compute.deconvolution.analysis(deconv, corr = 0.7, seed = 123) 
 compute.modules.relationship(network[[1]], dt[[1]], "Deconvolution-TFs_Modules", vertical = T, height = 30, width = 10, pval = 0.05)
 corr_modules = compute.modules.relationship(network[[1]], dt[[1]], return = T)
