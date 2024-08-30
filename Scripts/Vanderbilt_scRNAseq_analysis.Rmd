@@ -13,6 +13,7 @@ library(patchwork)
 library(SingleR)
 library(celldex)
 library(ggplot2)
+library(dplyr)
 set.seed(123)
 ```
 
@@ -162,16 +163,43 @@ write.csv(NK8.markersALL, "Results/NK8_markerALL.csv")
 
 #Differential markers
 NK8.markers01 <- FindMarkers(NK8, ident.1 = "0", ident.2 = "1")
+NK8.markers01 = NK8.markers01 %>%
+  filter(p_val_adj < 0.05) %>%
+  filter(abs(avg_log2FC) > 1) %>%
+  arrange(p_val_adj)
+
 head(NK8.markers01, 10)
 write.csv(NK8.markers01, "Results/NK8.markers01.csv")
 
 NK8.markers02 <- FindMarkers(NK8, ident.1 = "0", ident.2 = "2")
+NK8.markers02 = NK8.markers02 %>%
+  filter(p_val_adj < 0.05) %>%
+  filter(abs(avg_log2FC) > 1) %>%
+  arrange(p_val_adj)
+
 head(NK8.markers02, 10)
 write.csv(NK8.markers02, "Results/NK8.markers02.csv")
 
 NK8.markers12 <- FindMarkers(NK8, ident.1 = "1", ident.2 = "2")
+NK8.markers12 = NK8.markers12 %>%
+  filter(p_val_adj < 0.05) %>%
+  filter(abs(avg_log2FC) > 1) %>%
+  arrange(p_val_adj)
+
 head(NK8.markers12, 10)
 write.csv(NK8.markers12, "Results/NK8.markers12.csv")
+
+pdf("Results/ViolinPlot_NKmarkers01", width = 8, height = 4)
+VlnPlot(NK8, features = rownames(head(NK8.markers01, 3)))
+dev.off()
+
+pdf("Results/ViolinPlot_NKmarkers02", width = 8, height = 4)
+VlnPlot(NK8, features = rownames(head(NK8.markers02, 3)))
+dev.off()
+
+pdf("Results/ViolinPlot_NKmarkers12", width = 8, height = 4)
+VlnPlot(NK8, features = rownames(head(NK8.markers12, 3)))
+dev.off()
 ```
 
 Features NK
