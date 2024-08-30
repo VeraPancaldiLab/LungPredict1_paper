@@ -210,6 +210,7 @@ pdf("Results/Heatmap_cells_groups", width = 25, height = 15)
 draw(ht1, show_heatmap_legend = T, heatmap_legend_side = "left", annotation_legend_side = 'left')
 dev.off()
 ```
+
 Patient classification 
 ```{r}
 sub_grp <- cutree(hc, k = 2)
@@ -557,11 +558,57 @@ Enrichment of TFs modules
 compute.modules.enrichment(counts.norm, hub_tfs)
 ```
 
+TFs modules + pathways
+```{r}
+col_TFs = circlize::colorRamp2(c(-3, 0, 3), c("green", "white", "red"))
+col_pathways =  circlize::colorRamp2(c(-4, 0, 4), c("blue", "white", "yellow"))
 
 
+ht1 = Heatmap(t(scale(boruta_groups)), 
+        border = T, cluster_rows = dend_row, cluster_columns = dend_column, column_split = 2,
+        top_annotation = heatmap_annotation(annotations), column_gap = unit(8, "mm"), 
+        name = "Cell groups", clustering_method_rows = "ward.D2", clustering_method_columns = "ward.D2",
+        column_dend_height = unit(5, "cm"), row_dend_width = unit(5, "cm"), 
+        column_dend_reorder = T, row_dend_reorder = F,
+        show_row_names = T, 
+        show_heatmap_legend = T, 
+        row_names_gp = gpar(fontsize = 16), 
+        column_names_gp = gpar(fontsize =12), 
+        width = unit(25, "cm"), height = unit(8, "cm"),
+        heatmap_legend_param = list(labels_gp = gpar(fontsize = 12), legend_width = unit(12, "cm"), 
+                                    legend_heigh = unit(12, "cm"), title_gp = gpar(fontsize = 12)))
 
 
+ht2 = Heatmap(t(scale(network[[1]])), col = col_TFs, column_split = 2,
+        border = T, cluster_columns = dend_column,  name = "TFs modules",
+        column_gap = unit(8, "mm"), clustering_method_rows = "ward.D2", 
+        column_dend_height = unit(5, "cm"), row_dend_width = unit(5, "cm"), 
+        column_dend_reorder = T, row_dend_reorder = F,
+        show_row_names = T, 
+        show_heatmap_legend = T, 
+        row_names_gp = gpar(fontsize = 16), 
+        column_names_gp = gpar(fontsize =12), 
+        width = unit(25, "cm"), height = unit(4, "cm"),
+        heatmap_legend_param = list(labels_gp = gpar(fontsize = 12), legend_width = unit(12, "cm"), 
+                                    legend_heigh = unit(12, "cm"), title_gp = gpar(fontsize = 12)))
 
+ht3 = Heatmap(t(scale(pathways)), col = col_pathways, column_split = 2,
+        border = T, cluster_columns = dend_column,name = "Pathways scores",
+        column_gap = unit(8, "mm"), clustering_method_rows = "ward.D2", 
+        column_dend_height = unit(5, "cm"), row_dend_width = unit(5, "cm"), 
+        column_dend_reorder = T, row_dend_reorder = F,
+        show_row_names = T, 
+        show_heatmap_legend = T, 
+        row_names_gp = gpar(fontsize = 16), 
+        column_names_gp = gpar(fontsize =12), 
+        width = unit(25, "cm"), height = unit(8, "cm"),
+        heatmap_legend_param = list(labels_gp = gpar(fontsize = 12), legend_width = unit(12, "cm"), 
+                                    legend_heigh = unit(12, "cm"), title_gp = gpar(fontsize = 12)))
+
+pdf("Results/Heatmap_TFs_modules", width = 25, height = 15)
+draw(ht1%v%ht3%v%ht2, show_heatmap_legend = T, heatmap_legend_side = "left", annotation_legend_side = 'left')
+dev.off()
+```
 
 ====================================================================
 
