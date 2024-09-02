@@ -306,7 +306,7 @@ foldchange <- deseq2Results[which(deseq2Results$padj <= .05 & abs(deseq2Results$
 names(foldchange) = sigGenes
 library(EnhancedVolcano)
 pdf("Results/DEG_Volcano_Vanderbilt", width = 10, height = 8)
-EnhancedVolcano(deseq2Results, lab = rownames(deseq2Results), x = 'log2FoldChange', y = 'padj')
+EnhancedVolcano(deseq2Results, lab = rownames(deseq2Results), x = 'log2FoldChange', y = 'padj', labSize = 6)
 dev.off()
 ```
 
