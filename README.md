@@ -63,6 +63,9 @@ Make sure to run `renv::deactivate()` when finishing, to avoid conflicts wheneve
 
 For more information about how R-environments work, visit the main page of the tool [renv](https://rstudio.github.io/renv/articles/renv.html).
 
+## Citation
+Hurtado M, Khajavi L, Essabbar A, Kammer M, Xie T, Coullomb A, Pradines A, Casanova A, Kruczynski A, Gouin S, Clermont E, Boutillet L, Senosain MF, Zou Y, Zhao S, Burq P, Mahfoudi A, Besse J, Launay P, Passioukov A, Chetaille E, Favre G, Maldonado F, Cruzalegui F, Delfour O, Mazières J and Pancaldi V (2024) Transcriptomics proﬁling of the non-small cell lung cancer microenvironment across disease stages reveals dual immune cell-type behaviors. Front. Immunol. 15:1394965. [doi: 10.3389/fimmu.2024.1394965](https://doi.org/10.3389/fimmu.2024.1394965 )
+
 ## Contributing
 If you are interested or have questions about the analysis done in this project, we invite you to open an issue in https://github.com/VeraPancaldiLab/LungPredict1_paper/issues or contact Marcelo Hurtado (marcelo.hurtado@inserm.fr) for more information.
 
